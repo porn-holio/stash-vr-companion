@@ -1441,7 +1441,9 @@ def show_post(scene_id):
     wmfhd["width"] = 1080
     wmfhd["url"] = s["paths"]["stream"] + ".webm?resolution=FULL_HD"
 
+    # DeoVR plays the first encoding, so list the original file before the live transcodes
     scene["encodings"] = [
+        {"name": "stream", "videoSources": [vs]},
         {
             "name": "mp4",
             "videoSources": [
@@ -1453,7 +1455,6 @@ def show_post(scene_id):
             ],
         },
         {"name": "webm", "videoSources": [wmshd, wmfhd]},
-        {"name": "stream", "videoSources": [vs]},
     ]
 
     if "is3d" in s:
